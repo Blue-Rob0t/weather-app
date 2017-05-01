@@ -1,0 +1,18 @@
+.data-view{
+  margin-left: auto;
+  margin-right: auto;
+  background: rgba(255,255,255,0.5);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  height: 40rem;
+  width: 55rem;
+  transform: translate(-50%,-50%);
+
+}
+.data-view .contain{
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  transform: translate(0,50%);
+}
