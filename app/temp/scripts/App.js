@@ -53,7 +53,7 @@
 	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
 	console.log(DOM);
-
+	var mq = window.matchMedia("(min-width: 500px)");
 	// function that findes machine position if user gives access
 	function geoLocation() {
 	  console.log('geoLocation function run!');
@@ -108,18 +108,23 @@
 	          "mist": "mist"
 	        };
 
-	        for (var key in descriptions) {
-	          if (key == 'snow') {
-	            //   DOM.HTML.style.backgroundImage = `url('/assets/images/${descriptions[key]}.jpg')`
-	            //   DOM.HTML.style.backgroundRepeat = "no-repeat";
-	            // console.log(DOM.HTML);
-	            var source = document.createElement("source");
-	            source.setAttribute('src', '/assets/video/' + descriptions[key] + '.mp4');
-	            DOM.VID.appendChild(source);
-	            DOM.VID.loop = true;
-	            DOM.VID.play();
+	        if (mq.matches) {
+	          // window width is at least 500px
+	          for (var key in descriptions) {
+	            if (key == '' + apiData.weather[0].description.toLowerCase()) {
+	              //   DOM.HTML.style.backgroundImage = `url('/assets/images/${descriptions[key]}.jpg')`
+	              //   DOM.HTML.style.backgroundRepeat = "no-repeat";
+	              // console.log(DOM.HTML);
+	              var source = document.createElement("source");
+	              source.setAttribute('src', '/assets/video/' + descriptions[key] + '.mp4');
+	              DOM.VID.appendChild(source);
+	              DOM.VID.loop = true;
+	              DOM.VID.play();
+	            }
 	          }
-	        }
+	        } else {}
+	        // window width is less than 500px
+
 	        // Toggle between F and C
 	        function changeTemp() {
 	          // resets value of bool

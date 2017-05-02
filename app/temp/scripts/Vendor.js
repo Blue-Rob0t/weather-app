@@ -63,7 +63,7 @@
 
 	/*!
 	 * modernizr v3.3.1
-	 * Build http://modernizr.com/download?-flexbox-svg-setclasses-dontmin
+	 * Build http://modernizr.com/download?-flexbox-fullscreen-svg-setclasses-dontmin
 	 *
 	 * Copyright (c)
 	 *  Faruk Ates
@@ -834,6 +834,173 @@
 	  */
 
 	  Modernizr.addTest('svg', !!document.createElementNS && !!document.createElementNS('http://www.w3.org/2000/svg', 'svg').createSVGRect);
+
+	  /**
+	   * atRule returns a given CSS property at-rule (eg @keyframes), possibly in
+	   * some prefixed form, or false, in the case of an unsupported rule
+	   *
+	   * @memberof Modernizr
+	   * @name Modernizr.atRule
+	   * @optionName Modernizr.atRule()
+	   * @optionProp atRule
+	   * @access public
+	   * @function atRule
+	   * @param {string} prop - String name of the @-rule to test for
+	   * @returns {string|boolean} The string representing the (possibly prefixed)
+	   * valid version of the @-rule, or `false` when it is unsupported.
+	   * @example
+	   * ```js
+	   *  var keyframes = Modernizr.atRule('@keyframes');
+	   *
+	   *  if (keyframes) {
+	   *    // keyframes are supported
+	   *    // could be `@-webkit-keyframes` or `@keyframes`
+	   *  } else {
+	   *    // keyframes === `false`
+	   *  }
+	   * ```
+	   *
+	   */
+
+	  var atRule = function atRule(prop) {
+	    var length = prefixes.length;
+	    var cssrule = window.CSSRule;
+	    var rule;
+
+	    if (typeof cssrule === 'undefined') {
+	      return undefined;
+	    }
+
+	    if (!prop) {
+	      return false;
+	    }
+
+	    // remove literal @ from beginning of provided property
+	    prop = prop.replace(/^@/, '');
+
+	    // CSSRules use underscores instead of dashes
+	    rule = prop.replace(/-/g, '_').toUpperCase() + '_RULE';
+
+	    if (rule in cssrule) {
+	      return '@' + prop;
+	    }
+
+	    for (var i = 0; i < length; i++) {
+	      // prefixes gives us something like -o-, and we want O_
+	      var prefix = prefixes[i];
+	      var thisRule = prefix.toUpperCase() + '_' + rule;
+
+	      if (thisRule in cssrule) {
+	        return '@-' + prefix.toLowerCase() + '-' + prop;
+	      }
+	    }
+
+	    return false;
+	  };
+
+	  ModernizrProto.atRule = atRule;
+
+	  /**
+	   * prefixed returns the prefixed or nonprefixed property name variant of your input
+	   *
+	   * @memberof Modernizr
+	   * @name Modernizr.prefixed
+	   * @optionName Modernizr.prefixed()
+	   * @optionProp prefixed
+	   * @access public
+	   * @function prefixed
+	   * @param {string} prop - String name of the property to test for
+	   * @param {object} [obj] - An object to test for the prefixed properties on
+	   * @param {HTMLElement} [elem] - An element used to test specific properties against
+	   * @returns {string|false} The string representing the (possibly prefixed) valid
+	   * version of the property, or `false` when it is unsupported.
+	   * @example
+	   *
+	   * Modernizr.prefixed takes a string css value in the DOM style camelCase (as
+	   * opposed to the css style kebab-case) form and returns the (possibly prefixed)
+	   * version of that property that the browser actually supports.
+	   *
+	   * For example, in older Firefox...
+	   * ```js
+	   * prefixed('boxSizing')
+	   * ```
+	   * returns 'MozBoxSizing'
+	   *
+	   * In newer Firefox, as well as any other browser that support the unprefixed
+	   * version would simply return `boxSizing`. Any browser that does not support
+	   * the property at all, it will return `false`.
+	   *
+	   * By default, prefixed is checked against a DOM element. If you want to check
+	   * for a property on another object, just pass it as a second argument
+	   *
+	   * ```js
+	   * var rAF = prefixed('requestAnimationFrame', window);
+	   *
+	   * raf(function() {
+	   *  renderFunction();
+	   * })
+	   * ```
+	   *
+	   * Note that this will return _the actual function_ - not the name of the function.
+	   * If you need the actual name of the property, pass in `false` as a third argument
+	   *
+	   * ```js
+	   * var rAFProp = prefixed('requestAnimationFrame', window, false);
+	   *
+	   * rafProp === 'WebkitRequestAnimationFrame' // in older webkit
+	   * ```
+	   *
+	   * One common use case for prefixed is if you're trying to determine which transition
+	   * end event to bind to, you might do something like...
+	   * ```js
+	   * var transEndEventNames = {
+	   *     'WebkitTransition' : 'webkitTransitionEnd', * Saf 6, Android Browser
+	   *     'MozTransition'    : 'transitionend',       * only for FF < 15
+	   *     'transition'       : 'transitionend'        * IE10, Opera, Chrome, FF 15+, Saf 7+
+	   * };
+	   *
+	   * var transEndEventName = transEndEventNames[ Modernizr.prefixed('transition') ];
+	   * ```
+	   *
+	   * If you want a similar lookup, but in kebab-case, you can use [prefixedCSS](#modernizr-prefixedcss).
+	   */
+
+	  var prefixed = ModernizrProto.prefixed = function (prop, obj, elem) {
+	    if (prop.indexOf('@') === 0) {
+	      return atRule(prop);
+	    }
+
+	    if (prop.indexOf('-') != -1) {
+	      // Convert kebab-case to camelCase
+	      prop = cssToDOM(prop);
+	    }
+	    if (!obj) {
+	      return testPropsAll(prop, 'pfx');
+	    } else {
+	      // Testing DOM property e.g. Modernizr.prefixed('requestAnimationFrame', window) // 'mozRequestAnimationFrame'
+	      return testPropsAll(prop, obj, elem);
+	    }
+	  };
+
+	  /*!
+	  {
+	    "name": "Fullscreen API",
+	    "property": "fullscreen",
+	    "caniuse": "fullscreen",
+	    "notes": [{
+	      "name": "MDN documentation",
+	      "href": "https://developer.mozilla.org/en/API/Fullscreen"
+	    }],
+	    "polyfills": ["screenfulljs"],
+	    "builderAliases": ["fullscreen_api"]
+	  }
+	  !*/
+	  /* DOC
+	  Detects support for the ability to make the current website take over the user's entire screen
+	  */
+
+	  // github.com/Modernizr/Modernizr/issues/739
+	  Modernizr.addTest('fullscreen', !!(prefixed('exitFullscreen', document, false) || prefixed('cancelFullScreen', document, false)));
 
 	  // Run each test
 	  testRunner();

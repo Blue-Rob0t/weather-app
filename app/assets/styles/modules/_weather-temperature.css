@@ -1,0 +1,7 @@
+.temperature{
+  border: 1px solid yellow;
+  position: relative;
+  margin: auto;
+  bottom: 7.9em;
+  font-size: 1.875rem;
+}
