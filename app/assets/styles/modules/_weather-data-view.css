@@ -1,8 +1,10 @@
 
 .data-view{
+  border: 1px solid yellow;
+
   margin-left: auto;
   margin-right: auto;
-  background: rgba(255,255,255,0.5);
+  background: rgba(0, 0, 0, 0.1);
   position: absolute;
   top: 50%;
   left: 50%;

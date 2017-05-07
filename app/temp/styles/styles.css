@@ -1,5 +1,3 @@
-
-@import "modules/_weather-icon";
 /*based modules always used unless otherwise specified here*/
 /*! normalize.css v4.1.1 | MIT License | github.com/necolas/normalize.css */
 /**
@@ -358,7 +356,6 @@ a {
 @import "modules/_weather-btn";
 @import "modules/_wrapper";
 @import "modules/_page-section";
-@import "modules/_headline";
 @import "modules/_row";
 @import "modules/_section-title";
 @import "modules/_feature-item";
@@ -372,6 +369,8 @@ a {
 /*@import "modules/_social-icons";*/
 /*used modules from boiler-plate*/
 body {
+  border: 1px solid red;
+
   z-index: -500;
   max-width: 42em;
   padding: 2em;
@@ -382,9 +381,11 @@ body {
   background-color: currentColor;
 }
 .data-view{
+  border: 1px solid yellow;
+
   margin-left: auto;
   margin-right: auto;
-  background: rgba(255,255,255,0.5);
+  background: rgba(0, 0, 0, 0.1);
   position: absolute;
   top: 50%;
   left: 50%;
@@ -395,6 +396,8 @@ body {
 
 }
 .generic-content-container {
+  border: 1px solid red;
+
     text-align: center;
     -webkit-transform: translate(0,50%);
             transform: translate(0,50%);
@@ -405,32 +408,33 @@ body {
   line-height: 1.65;
   margin: 0 0 1.8rem 0;
 }
-@media (min-width: 530px){
-  .generic-content-container p{
+@media (min-width: 530px) {
+  .generic-content-container p {
     font-size: 1.125rem;
   }
 }
 .generic-content-container p a {
   font-weight: 700;
 }
-@media (min-width: 530px){
-  .generic-content-container--small{
+@media (min-width: 530px) {
+  .generic-content-container--small {
     color: blue;
   }
 }
-@media (min-width: 530px){
-  .generic-content-container--medium{
+@media (min-width: 530px) {
+  .generic-content-container--medium {
     color: yellow;
   }
 }
-@media (min-width: 1010px){
-  .generic-content-container--large{
-    /*not used- just here as option*/
+@media (min-width: 1010px) {
+  .generic-content-container--large {/*not used- just here as option*/
     color: green;
   }
 }
 html,
 body {
+  border: 1px solid yellow;
+
   height: 100%;
   width: 100%;
 }
@@ -487,26 +491,49 @@ video#bgvid {
 /*background-color: #999;*/
 /*}*/
 .location{
-  border: 1px solid red;
-  position: relative;
-  font-weight: 400;
-  font-size: 2.875rem;
-  /*margin-bottom: 1.6em;*/
-  bottom: 4.9em;
+  border: 2px solid red;
+  color: rgba(255,255,255,0.9);
 }
 .desc{
+  border: 1px solid red;
   position: relative;
-  font-size: 2.875rem;
-  bottom: 5em;
-  color: red;
+  top: 3em;
+  font-size: 2.5rem;
+  color:white;
+}
+@media (min-width: 530px) {
+  .desc {
+    border: 1px solid red;
+    position: relative;
+    top: 3em;
+    font-size: 3.5rem;
+    color: yellow;
+  }
+}
+@media (min-width: 800px) {
+  .desc {
+    border: 1px solid red;
+    position: relative;
+    top: 3em;
+    font-size: 4.5rem;
+    color: blue;
+  }
+}
+.temperature-bg{
 }
 .temperature{
   border: 1px solid yellow;
   position: relative;
   margin: auto;
-  bottom: 7.9em;
-  font-size: 1.875rem;
+  bottom: 1em;
+  font-size: 3.875rem;
+  color: white;
 }
+@media (min-width: 530px) {
+}
+@media (min-width: 800px) {
+}
+/*makes weather-icon-ani is before weather-icon*/
 html { box-sizing: border-box; }
 html *,
 html *:before,
@@ -525,12 +552,9 @@ a {
 }
 p { margin: 1.375rem 0; }*/
 .icon {
-  z-index: -1;
-  position: absolute;
-  /*display: inline-block;*/
-  width: 12em;
-  height: 10em;
-  font-size: 1em; /* control icon size here */
+
+  visibility: hidden;
+  font-size: 1.5em; /* control icon size here */
 }
 .cloud {
   position: absolute;
@@ -577,6 +601,7 @@ p { margin: 1.375rem 0; }*/
 }
 .cloud:nth-child(2):after { background: #fff; }
 .sun {
+  z-index: 10;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -863,4 +888,77 @@ p { margin: 1.375rem 0; }*/
     background: #fff;
     opacity: 0.2;
   }
+}
+.icon-bg{
+  position: relative;
+  bottom:12em;
+  border: 3px solid green;
+  padding:6em ;
+
+}
+@media (min-width: 530px) {
+}
+@media (min-width: 800px) {
+}
+[tooltip]{
+  margin:20px;
+  position:relative;
+}
+[tooltip]::before{
+  content: "";
+position: absolute;
+top:-6px;
+left:50%;
+-webkit-transform: translateX(-50%);
+        transform: translateX(-50%);
+border-width: 4px 6px 0 6px;
+border-style: solid;
+border-color: rgba(0,0,0,0.7) transparent transparent     transparent;
+z-index: 100;
+}
+[tooltip]::after {
+    content: attr(tooltip);
+    position: absolute;
+    left:50%;
+    top:-6px;
+    -webkit-transform: translateX(-50%)   translateY(-100%);
+            transform: translateX(-50%)   translateY(-100%);
+    background: rgba(0,0,0,0.7);
+    text-align: center;
+    color: #fff;
+    padding:4px 2px;
+    font-size: 12px;
+    min-width: 80px;
+    border-radius: 5px;
+    pointer-events: none;
+}
+[tooltip-position='left']::before{
+  left:0%;
+  top:50%;
+  margin-left:-12px;
+  -webkit-transform:translatey(-50%) rotate(-90deg);
+          transform:translatey(-50%) rotate(-90deg)
+}
+[tooltip-position='left']::after{
+  left:0%;
+  top:50%;
+  margin-left:-8px;
+  -webkit-transform: translateX(-100%)   translateY(-50%);
+          transform: translateX(-100%)   translateY(-50%);
+}
+[tooltip]:hover::after,[tooltip]:hover::before {
+   opacity:1
+}
+.visible {
+  border: 1px solid red;
+  visibility: visible;
+}
+.weather-headline{
+  position: relative;
+  font-size: 1.6rem;
+  bottom: 2em;
+}
+@media (min-width: 530px) {
+}
+@media (min-width: 800px) {
 }

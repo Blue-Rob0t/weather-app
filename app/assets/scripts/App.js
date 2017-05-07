@@ -21,7 +21,8 @@ function httpGetAsync(urlRequest,callbackFunc){
     xmlHttp.onreadystatechange = function() {
         if (xmlHttp.readyState == 4 && xmlHttp.status == 200){
           console.log([xmlHttp.status,
-                      xmlHttp.readyState]
+                      xmlHttp.readyState,
+                    "fetch status"]
                     );
             parseData(xmlHttp.responseText)
         }
@@ -42,9 +43,9 @@ function parseData(apiData){
       console.log(apiData);
         DOM.LOCATION.innerHTML = `${apiData.name}`;
         DOM.TEMP.innerHTML     = `${Math.round(apiData.main.temp * 9/5 - 459.67)} F°`;
-        DOM.BUTTON2.innerHTML  ="click for C"
+        // DOM.BUTTON2.innerHTML  ="click for C"
         DOM.DESC.innerHTML     =`${apiData.weather[0].description}`;
-        DOM.IMG.src = `http://openweathermap.org/img/w/${apiData.weather[0].icon}.png`
+        // DOM.IMG.src = `http://openweathermap.org/img/w/${apiData.weather[0].icon}.png`
         // Background Image
         let descriptions = {
         	"clear sky":"sunny-day",
@@ -59,22 +60,28 @@ function parseData(apiData){
         	"mist":"mist"
         }
 
+        for (var key in descriptions){
+          if(key == `${apiData.weather[0].description.toLowerCase()}`){
+          //   DOM.HTML.style.backgroundImage = `url('/assets/images/${descriptions[key]}.jpg')`
+          //   DOM.HTML.style.backgroundRepeat = "no-repeat";
+          // console.log(DOM.HTML);
+          let source = document.createElement("source");
+          source.setAttribute('src', `/assets/video/${descriptions[key]}.mp4`);
+          DOM.VID.appendChild(source);
+          DOM.VID.loop = true;
+          DOM.VID.play();
 
+          let iconHTML = document.querySelector(`.${descriptions[key]}`);
+
+          iconHTML.classList.remove("visible");
+          iconHTML.classList.add('visible')
+
+          console.log(iconHTML);
+          }
+        }
 
         if (mq.matches) {
   // window width is at least 500px
-  for (var key in descriptions){
-    if(key == `${apiData.weather[0].description.toLowerCase()}`){
-    //   DOM.HTML.style.backgroundImage = `url('/assets/images/${descriptions[key]}.jpg')`
-    //   DOM.HTML.style.backgroundRepeat = "no-repeat";
-    // console.log(DOM.HTML);
-    let source = document.createElement("source");
-    source.setAttribute('src', `/assets/video/${descriptions[key]}.mp4`);
-    DOM.VID.appendChild(source);
-    DOM.VID.loop = true;
-    DOM.VID.play();
-    }
-  }
 } else {
   // window width is less than 500px
 }
@@ -84,11 +91,11 @@ function parseData(apiData){
       bool = !bool
 
     if (bool) {
-      DOM.BUTTON2.innerHTML  ="click for C"
+      // DOM.BUTTON2.innerHTML  ="click for C"
       DOM.TEMP.innerHTML      = `${Math.round(apiData.main.temp * 9/5 - 459.67)} F°`;
       }
       else {
-        DOM.BUTTON2.innerHTML  ="click for F"
+        // DOM.BUTTON2.innerHTML  ="click for F"
         DOM.TEMP.innerHTML      = `${Math.round(apiData.main.temp  - 273.15)} C°`;
 
       }
@@ -96,7 +103,7 @@ function parseData(apiData){
       console.log(bool);
       }
 
-      DOM.BUTTON2.addEventListener('click', changeTemp);
+      DOM.TEMP.addEventListener('click', changeTemp);
     }
     // passes in apiData and visualizes it to page
     visualize(apiData)
@@ -108,6 +115,7 @@ httpGetAsync(theUrl,parseData);
   })
 }
 
-DOM.BUTTON1.addEventListener("click", geoLocation);
-// function that findes m0achine position if user gives access
+document.querySelector('.icon-bg').addEventListener("click", geoLocation);
+// function that findes m0achine position if user gives access and
+// initialize weather application
 geoLocation();

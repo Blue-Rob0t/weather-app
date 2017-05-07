@@ -1,8 +1,4 @@
 .location{
-  border: 1px solid red;
-  position: relative;
-  font-weight: 400;
-  font-size: 2.875rem;
-  /*margin-bottom: 1.6em;*/
-  bottom: 4.9em;
+  border: 2px solid red;
+  color: rgba(255,255,255,0.9);
 }

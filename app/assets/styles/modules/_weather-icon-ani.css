@@ -20,12 +20,9 @@ a {
 p { margin: 1.375rem 0; }*/
 
 .icon {
-  z-index: -1;
-  position: absolute;
-  /*display: inline-block;*/
-  width: 12em;
-  height: 10em;
-  font-size: 1em; /* control icon size here */
+
+  visibility: hidden;
+  font-size: 1.5em; /* control icon size here */
 }
 
 .cloud {
@@ -74,6 +71,7 @@ p { margin: 1.375rem 0; }*/
 .cloud:nth-child(2):after { background: #fff; }
 
 .sun {
+  z-index: 10;
   position: absolute;
   top: 50%;
   left: 50%;

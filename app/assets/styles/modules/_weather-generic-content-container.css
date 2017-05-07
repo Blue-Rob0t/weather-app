@@ -1,4 +1,6 @@
 .generic-content-container {
+  border: 1px solid red;
+
     text-align: center;
     transform: translate(0,50%);
 

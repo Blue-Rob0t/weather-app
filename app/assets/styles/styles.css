@@ -8,7 +8,6 @@
 @import "modules/_weather-btn";
 @import "modules/_wrapper";
 @import "modules/_page-section";
-@import "modules/_headline";
 @import "modules/_row";
 @import "modules/_section-title";
 @import "modules/_feature-item";
@@ -28,5 +27,7 @@
 @import "modules/_weather-location";
 @import "modules/_weather-desc";
 @import "modules/_weather-temperature";
-@import "modules/_weather-icon";
+/*makes weather-icon-ani is before weather-icon*/
 @import "modules/_weather-icon-ani";
+@import "modules/_weather-icon";
+@import "modules/_weather-headline"

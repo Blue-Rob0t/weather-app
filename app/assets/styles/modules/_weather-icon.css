@@ -1,9 +1,70 @@
-/*.weather{
+.icon-bg{
   position: relative;
-}*/
-.icon{
-  position: relative;
-  bottom: 15em;
-  margin: auto;
-  m
+  bottom:12em;
+  border: 3px solid green;
+  padding:6em ;
+
+
+  @mixin atSmall{
+
+    }
+  @mixin atMedium{
+
+  }
+
+}
+
+[tooltip]{
+  margin:20px;
+  position:relative;
+}
+
+[tooltip]::before{
+  content: "";
+position: absolute;
+top:-6px;
+left:50%;
+transform: translateX(-50%);
+border-width: 4px 6px 0 6px;
+border-style: solid;
+border-color: rgba(0,0,0,0.7) transparent transparent     transparent;
+z-index: 100;
+}
+
+[tooltip]::after {
+    content: attr(tooltip);
+    position: absolute;
+    left:50%;
+    top:-6px;
+    transform: translateX(-50%)   translateY(-100%);
+    background: rgba(0,0,0,0.7);
+    text-align: center;
+    color: #fff;
+    padding:4px 2px;
+    font-size: 12px;
+    min-width: 80px;
+    border-radius: 5px;
+    pointer-events: none;
+}
+
+[tooltip-position='left']::before{
+  left:0%;
+  top:50%;
+  margin-left:-12px;
+  transform:translatey(-50%) rotate(-90deg)
+}
+[tooltip-position='left']::after{
+  left:0%;
+  top:50%;
+  margin-left:-8px;
+  transform: translateX(-100%)   translateY(-50%);
+}
+
+[tooltip]:hover::after,[tooltip]:hover::before {
+   opacity:1
+}
+
+.visible {
+  border: 1px solid red;
+  visibility: visible;
 }
