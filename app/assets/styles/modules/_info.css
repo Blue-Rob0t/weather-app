@@ -1,0 +1,21 @@
+.info{
+
+  position: relative;
+  display: inherit;
+  padding-bottom: 0px;
+  top: -29px;
+  bottom: 164px;
+  margin-bottom: 0px;
+/*
+  @mixin atSmall{
+    padding-bottom: 2em;
+    position: relative;
+    bottom: 2em;
+  }
+
+  @mixin atMedium{
+    padding-bottom: 2em;
+    position: relative;
+    bottom: 2em;
+  }*/
+}

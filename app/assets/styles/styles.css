@@ -27,7 +27,11 @@
 @import "modules/_weather-location";
 @import "modules/_weather-desc";
 @import "modules/_weather-temperature";
+@import "modules/_weather-nav";
+
 /*makes weather-icon-ani is before weather-icon*/
 @import "modules/_weather-icon-ani";
 @import "modules/_weather-icon";
-@import "modules/_weather-headline"
+@import "modules/_weather-headline";
+@import "modules/_weather-text-entry";
+@import "modules/_info";

@@ -1,17 +1,27 @@
 .temperature-bg{
+
 }
 
 .temperature{
-  border: 1px solid yellow;
   position: relative;
   margin: auto;
-  bottom: 1em;
-  font-size: 3.875rem;
+  bottom:.75em;
+  font-size: 2.5rem;
   color: white;
-  @mixin atSmall{
+  transition: all 2s;
 
+  @mixin atSmall{
+    position: relative;
+    margin: auto;
+    bottom: 1em;
+    font-size: 2.875rem;
+    color: white;
     }
   @mixin atMedium{
-
+    position: relative;
+    margin: auto;
+    bottom: 1em;
+    font-size: 3.875rem;
+    color: white;
   }
 }

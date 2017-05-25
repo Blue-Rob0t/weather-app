@@ -1,24 +1,23 @@
 .desc{
-  border: 1px solid red;
   position: relative;
-  top: 3em;
-  font-size: 2.5rem;
+  top: 6.3em;
+  font-size: 1.5rem;
   color:white;
+  z-index: 1;
+  transition: all 2s;
+
 
   @mixin atSmall{
-    border: 1px solid red;
     position: relative;
-    top: 3em;
+    top: 4em;
     font-size: 3.5rem;
     color:yellow;
 
   }
   @mixin atMedium{
-    border: 1px solid red;
     position: relative;
-    top: 3em;
+    top: 2em;
     font-size: 4.5rem;
-    color:blue;
-
+    color: red;
   }
 }

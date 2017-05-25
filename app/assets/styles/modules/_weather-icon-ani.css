@@ -22,7 +22,20 @@ p { margin: 1.375rem 0; }*/
 .icon {
 
   visibility: hidden;
-  font-size: 1.5em; /* control icon size here */
+  font-size: .8em; /* control icon size here */
+  transition: all 2s;
+
+  @mixin atSmall{
+    visibility: hidden;
+    font-size: 1.5em;
+
+  }
+  @mixin atMedium{
+    visibility: hidden;
+    font-size: 2em;
+
+  }
+  @mi
 }
 
 .cloud {

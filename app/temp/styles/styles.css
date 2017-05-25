@@ -433,7 +433,6 @@ body {
 }
 html,
 body {
-  border: 1px solid yellow;
 
   height: 100%;
   width: 100%;
@@ -490,48 +489,189 @@ video#bgvid {
     background-size:  cover;*/
 /*background-color: #999;*/
 /*}*/
-.location{
-  border: 2px solid red;
+h1.location{
   color: rgba(255,255,255,0.9);
+  padding-top:2.5em;
+  padding-bottom:2em;
+}
+/*transition: all 2s;*/
+@media (min-width: 530px) {
+
+}
+@media (min-width: 800px) {
+
 }
 .desc{
-  border: 1px solid red;
   position: relative;
-  top: 3em;
-  font-size: 2.5rem;
+  top: 6.3em;
+  font-size: 1.5rem;
   color:white;
+  z-index: 1;
+  transition: all 2s;
 }
 @media (min-width: 530px) {
   .desc {
-    border: 1px solid red;
     position: relative;
-    top: 3em;
+    top: 4em;
     font-size: 3.5rem;
     color: yellow;
   }
 }
 @media (min-width: 800px) {
   .desc {
-    border: 1px solid red;
     position: relative;
-    top: 3em;
+    top: 2em;
     font-size: 4.5rem;
-    color: blue;
+    color: red;
   }
 }
 .temperature-bg{
+
 }
 .temperature{
-  border: 1px solid yellow;
   position: relative;
   margin: auto;
-  bottom: 1em;
-  font-size: 3.875rem;
+  bottom:.75em;
+  font-size: 2.5rem;
   color: white;
+  transition: all 2s;
 }
 @media (min-width: 530px) {
+  .temperature {
+    position: relative;
+    margin: auto;
+    bottom: 1em;
+    font-size: 2.875rem;
+    color: white;
+  }
 }
 @media (min-width: 800px) {
+  .temperature {
+    position: relative;
+    margin: auto;
+    bottom: 1em;
+    font-size: 3.875rem;
+    color: white;
+  }
+}
+/*begin our styles*/
+/*for menu visibility control see weather-icon.css*/
+body {
+    font: 16px/1.4em 'PT Sans', sans-serif;;
+    color: #1c1c1c;
+}
+p,
+ul {
+    margin: 0 0 1.5em;
+}
+ul {
+    list-style: disc;
+    padding: 0 0 0 20px;
+}
+a {
+    color: #1D745A;
+}
+h1.logo {
+
+}
+h2 {
+    font-family: 'PT Serif', serif;
+    font-size: 32px;
+    line-height: 1.4em;
+    margin: 0 0 .4em;
+    font-weight: bold;
+}
+/*header*/
+header {
+    background: #1c1c1c;
+    padding: 15px 20px;
+    margin-bottom: 50px;
+}
+/*shorter clearfix http://nicolasgallagher.com/micro-clearfix-hack/*/
+header:before,
+        header:after {
+            content:"";
+            display:table;
+        }
+header:after {
+            clear:both;
+        }
+/* For IE 6/7 (trigger hasLayout) */
+header {
+            zoom:1;
+        }
+h1.logo a {
+    color: #d8d8d8;
+    text-decoration: none;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 20px;
+    line-height: 22px;
+    float: left;
+    letter-spacing: 0.2em;
+}
+a.to_nav {
+    float: right;
+    color: #fff;
+    background: #4e4e4e;
+    text-decoration: none;
+    padding: 0 10px;
+    font-size: 12px;
+    font-weight: bold;
+    line-height: 22px;
+    height: 22px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    border-radius: 2px;
+}
+a.to_nav:hover,
+a.to_nav:focus {
+    color: #1c1c1c;
+    background: #ccc;
+}
+/*navigator div*/
+.navigator{
+  position: relative;
+  visibility: hidden;
+  opacity: 0;
+  bottom: 2;
+  transition: all 3s;
+  display: inherit;
+}
+@media (min-width: 530px) {
+
+}
+/*navigation*/
+#primary_nav ul {
+    list-style: none;
+    background: rgba(28, 28, 28, 0.4);
+    padding: 60px 0;
+}
+#primary_nav ul > li {
+    list-style: none;
+    background: rgba(0, 0, 0, 0.62);
+    padding: 20px 0;
+}
+#primary_nav li a {
+    display: block;
+    padding: 0 20px;
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    letter-spacing: 0.1em;
+    line-height: 2em;
+    height: 2em;
+    border-bottom: 1px solid #383838;
+}
+#primary_nav li:last-child a {
+    border-bottom: none;
+}
+#primary_nav li a:hover,
+#primary_nav li a:focus {
+    color: pink;
+    background: rgba(153, 153, 153, 0.79);
 }
 /*makes weather-icon-ani is before weather-icon*/
 html { box-sizing: border-box; }
@@ -554,7 +694,21 @@ p { margin: 1.375rem 0; }*/
 .icon {
 
   visibility: hidden;
-  font-size: 1.5em; /* control icon size here */
+  font-size: .8em; /* control icon size here */
+  transition: all 2s;
+  @mi
+;}
+@media (min-width: 530px) {
+  .icon {
+    visibility: hidden;
+    font-size: 1.5em;
+  }
+}
+@media (min-width: 800px) {
+  .icon {
+    visibility: hidden;
+    font-size: 2em;
+  }
 }
 .cloud {
   position: absolute;
@@ -891,74 +1045,103 @@ p { margin: 1.375rem 0; }*/
 }
 .icon-bg{
   position: relative;
-  bottom:12em;
-  border: 3px solid green;
+  bottom:4em;
+  background-color: #161616;
+  width: 100%;
+  opacity: 0.5;
   padding:6em ;
+  transition: all 2s;
+  z-index: -10;
 
 }
 @media (min-width: 530px) {
+  .icon-bg {
+    position: relative;
+    bottom: 10em;
+    background-color: #161616;
+    width: 100%;
+    opacity: 0.5;
+    padding: 6em ;
+  }
 }
 @media (min-width: 800px) {
+  .icon-bg {
+    position: relative;
+    bottom: 15em;
+    background-color: #161616;
+    width: 100%;
+    opacity: 0.5;
+    padding: 6em ;
+  }
 }
-[tooltip]{
-  margin:20px;
-  position:relative;
-}
-[tooltip]::before{
-  content: "";
-position: absolute;
-top:-6px;
-left:50%;
--webkit-transform: translateX(-50%);
-        transform: translateX(-50%);
-border-width: 4px 6px 0 6px;
-border-style: solid;
-border-color: rgba(0,0,0,0.7) transparent transparent     transparent;
-z-index: 100;
-}
-[tooltip]::after {
-    content: attr(tooltip);
-    position: absolute;
-    left:50%;
-    top:-6px;
-    -webkit-transform: translateX(-50%)   translateY(-100%);
-            transform: translateX(-50%)   translateY(-100%);
-    background: rgba(0,0,0,0.7);
-    text-align: center;
-    color: #fff;
-    padding:4px 2px;
-    font-size: 12px;
-    min-width: 80px;
-    border-radius: 5px;
-    pointer-events: none;
-}
-[tooltip-position='left']::before{
-  left:0%;
-  top:50%;
-  margin-left:-12px;
-  -webkit-transform:translatey(-50%) rotate(-90deg);
-          transform:translatey(-50%) rotate(-90deg)
-}
-[tooltip-position='left']::after{
-  left:0%;
-  top:50%;
-  margin-left:-8px;
-  -webkit-transform: translateX(-100%)   translateY(-50%);
-          transform: translateX(-100%)   translateY(-50%);
-}
-[tooltip]:hover::after,[tooltip]:hover::before {
-   opacity:1
-}
-.visible {
-  border: 1px solid red;
+/* also  effects navigation*/
+.visible{
   visibility: visible;
+  opacity: 1;
+}
+.visible-z-index-high{
+  z-index: 99 !important;
+}
+/*removes article/icons from page*/
+.none{
+  display: none;
 }
 .weather-headline{
   position: relative;
   font-size: 1.6rem;
-  bottom: 2em;
+  top:-1em;
+  transition: all 2s;
 }
 @media (min-width: 530px) {
+  .weather-headline {
+    position: relative;
+    font-size: 2.2rem;
+    bottom: 2em;
+  }
 }
 @media (min-width: 800px) {
+  .weather-headline {
+    position: relative;
+    font-size: 2.9rem;
+    bottom: 2em;
+  }
+}
+.text-entry{
+  display: block;
+  margin: 0;
+  /*height: 40px;*/
+  width: 100%;
+  line-height: 40px;
+  font-size: 15px;
+  border: 10px  solid blue;
+  position: relative;
+}
+.text-entry--in-view{
+  bottom: 30em;
+}
+.suggestions{
+  border: 10px solid yellow;
+  position: relative;
+/*bottom: 45rem;*/
+}
+.info{
+
+  position: relative;
+  display: inherit;
+  padding-bottom: 0px;
+  top: -29px;
+  bottom: 164px;
+  margin-bottom: 0px;
+/*
+  @mixin atSmall{
+    padding-bottom: 2em;
+    position: relative;
+    bottom: 2em;
+  }
+
+  @mixin atMedium{
+    padding-bottom: 2em;
+    position: relative;
+    bottom: 2em;
+  }*/
 }

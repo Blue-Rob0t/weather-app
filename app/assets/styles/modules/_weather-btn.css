@@ -1,6 +1,5 @@
 .btn {
 
-  border: 1px solid green;
   background-color: $mainBlue;
   color: #FFF;
   text-decoration: none;
@@ -15,7 +14,7 @@
 
   &-temp{
     position: relative;
-    bottom: 1em;
+    bottom: em;
 
     color: red;
       &--small{

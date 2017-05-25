@@ -2,7 +2,6 @@
   "name": "zero-bp-rename-this",
   "version": "1.0.0",
   "dependencies": {
-    "jquery": "^2.2.4",
     "jquery-smooth-scroll": "^2.0.0",
     "lazysizes": "^2.0.0",
     "normalize.css": "^4.1.1",
@@ -28,6 +27,8 @@
     "gulp-uglify": "^2.0.0",
     "gulp-usemin": "^0.3.23",
     "gulp-watch": "^4.3.5",
+    "jquery": "^2.2.4",
+    "kerplunk-city-autocomplete": "^0.2.10",
     "postcss-hexrgba": "^0.2.0",
     "postcss-import": "^8.1.2",
     "postcss-mixins": "^4.0.2",

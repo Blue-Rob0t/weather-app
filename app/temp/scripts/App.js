@@ -42,7 +42,7 @@
 /************************************************************************/
 /******/ ([
 /* 0 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
 
@@ -52,13 +52,25 @@
 
 	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
-	console.log(DOM);
+	function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } } // global variables
+
+
+	var endpoint = 'https://gist.githubusercontent.com/Miserlou/c5cd8364bf9b2420bb29/raw/2bf258763cdddd704f8ffd3ea9a3e81d25e2c6f6/cities.json';
+	// empty array to enter data
+	var cities = [];
+	var searchInput = document.querySelector('.search');
+	var suggestions = document.querySelector('.suggestions');
+	console.log(searchInput);
+	var nav = false;
+
 	var mq = window.matchMedia("(min-width: 500px)");
 	// function that findes machine position if user gives access
-	function geoLocation() {
+
+	function geoLocation(location) {
+
 	  console.log('geoLocation function run!');
-	  console.log("working");
-	  navigator.geolocation.getCurrentPosition(function (position) {
+
+	  navigator.geolocation.getCurrentPosition(function (position, location) {
 	    // variable that sets value for latitude to lat and longitude to lon
 	    var lat = position.coords.latitude;
 	    var lon = position.coords.longitude;
@@ -105,7 +117,10 @@
 	          "light rain": "light-rain",
 	          "thunderstorm": "heavy-rain",
 	          "snow": "snow",
-	          "mist": "mist"
+	          "mist": "mist",
+	          "moderate rain": 'light-rain',
+	          "heavy intensity rain": 'light-rain',
+	          'light intensity drizzle': 'light-rain'
 	        };
 
 	        for (var key in descriptions) {
@@ -124,7 +139,7 @@
 	            iconHTML.classList.remove("visible");
 	            iconHTML.classList.add('visible');
 
-	            console.log(iconHTML);
+	            // console.log(iconHTML);
 	          }
 	        }
 
@@ -145,8 +160,6 @@
 	            // DOM.BUTTON2.innerHTML  ="click for F"
 	            DOM.TEMP.innerHTML = Math.round(apiData.main.temp - 273.15) + ' C\xB0';
 	          }
-
-	          console.log(bool);
 	        }
 
 	        DOM.TEMP.addEventListener('click', changeTemp);
@@ -159,14 +172,148 @@
 	  });
 	}
 
+	function navControl() {
+
+	  var itemsChange = document.getElementsByClassName('hidden');
+
+	  function showContent() {
+	    for (var i = 0; i < itemsChange.length; i++) {
+	      itemsChange[i].style.display = 'inherit';
+	    }
+	  }
+
+	  function hideContent() {
+
+	    for (var i = 0; i < itemsChange.length; i++) {
+	      itemsChange[i].style.display = 'none';
+	    }
+	  }
+
+	  var menu = document.querySelector('.to_nav');
+	  var navigation = document.querySelector('.navigator');
+	  var navLinks = document.querySelector('ul> li');
+
+	  menu.addEventListener('click', function () {
+	    nav = !nav;
+	    if (nav) {
+	      hideContent();
+	      navigation.classList.add('visible');
+	      navigation.classList.add('visible-z-index-high');
+	    } else {
+	      showContent();
+	      navigation.classList.remove('visible');
+	      navigation.classList.remove('visible-z-index-high');
+	    }
+	  });
+	}
+
 	document.querySelector('.icon-bg').addEventListener("click", geoLocation);
 	// function that findes m0achine position if user gives access and
 	// initialize weather application
 	geoLocation();
+	navControl();
 
-/***/ },
+	// Gets data and spreads it into array cities
+
+	// returns promise
+	fetch(endpoint)
+	// turn endpoint into json format
+	.then(function (info) {
+	  return info.json();
+	})
+	// use spread to place ind value of data into array
+	.then(function (data) {
+	  return cities.push.apply(cities, _toConsumableArray(data));
+	});
+
+	// function takes in two parameters
+	function findMatches(wordToMatch, x) {
+	  // cities array it iterated over and we retun any element that passes
+	  // that regex wordToMatch test
+	  return cities.filter(function (place) {
+	    //new RegExp(patter,-flag) use RegExp if to be
+	    // used not in a loop and user dynamically enters expression to be matched
+
+	    var regex = new RegExp(wordToMatch, 'gi');
+	    // filter returns any place object that matches regex place.cities value
+	    return place.city.match(regex) || place.state.match(regex);
+	  });
+	}
+
+	// function called displayMatches is created
+	function displayMatches() {
+	  // result equals a findMatches call and we put
+	  // in the value attached to displayMatches
+	  //  you will see addEventListener can allow
+	  // this.value to equal value of form elemnt
+	  var result = findMatches(this.value, cities);
+	  // returns a HTML template with data inside
+	  var html = result.map(function (place) {
+	    return '\n        <li> <a id=\'list\' href="#">\n          ' + place.city + ', ' + place.state + '\n          ' + place.population + '\n          </a>\n        </li>\n    ';
+	  }).join('');
+	  // sets up a ul most likely that containts the list items
+	  suggestions.innerHTML = html.toString();
+	}
+	function cityName() {
+
+	  // submit button
+	  document.querySelector('#submit').addEventListener('click', function () {
+	    var inputValue = searchInput.value;
+	    var apicall = 'api.openweathermap.org/data/2.5/weather?q=' + inputValue + ',us';
+	    geoLocation(apicall);
+	  });
+
+	  suggestions.addEventListener('click', function (e) {
+
+	    // console.log(e.target.id);
+	    if (e.target.id = 'list') {
+	      var inputValue = e.target.innerText.split(',')[0];
+	      var apicall = 'api.openweathermap.org/data/2.5/weather?q=' + inputValue + ',us';
+	      geoLocation(apicall);
+	    } else {
+	      console.log("error");
+	    }
+	  });
+	}
+
+	// adds event listenter to input field
+	// function calls section.
+	cityName();
+	searchInput.addEventListener('change', displayMatches);
+	searchInput.addEventListener('keyup', displayMatches);
+
+	var textEntryLink = document.querySelector('#text-ent');
+	var devLocalLink = document.querySelector('#dev-location');
+	var voiceComm = document.querySelector('#voice-comm');
+	var contact = document.querySelector('#contact');
+	var top = document.querySelector('#top');
+
+	textEntryLink.addEventListener('click', displayTextEntry);
+	devLocalLink.addEventListener('click', geoLocation);
+	// voiceComm.addEventListener('click', );
+	// contact.addEventListener('click', );
+	// top.addEventListener('click', );
+
+
+	function displayTextEntry(e) {
+	  nav = false;
+	  var itemsChange = document.getElementsByClassName('hidden');
+	  var navigation = document.querySelector('.navigator');
+	  var textEntryView = document.querySelector('.text-entry');
+
+	  console.log('preventDefault');
+
+	  textEntryView.classList.add('text-entry--in-view');
+	  textEntryView.style.display = 'inherit';
+	  navigation.classList.remove('visible');
+	  navigation.classList.remove('visible-z-index-high');
+
+	  e.preventDefault();
+	}
+
+/***/ }),
 /* 1 */
-/***/ function(module, exports) {
+/***/ (function(module, exports) {
 
 	'use strict';
 
@@ -184,5 +331,5 @@
 	var BUTTON1 = exports.BUTTON1 = document.querySelector('.btn-1');
 	var BUTTON2 = exports.BUTTON2 = document.querySelector('.btn-temp');
 
-/***/ }
+/***/ })
 /******/ ]);

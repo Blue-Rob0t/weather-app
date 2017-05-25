@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+  <head>
+<!-- allows for respoinsive design -->
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,500,700' rel='stylesheet' type='text/css'>
+    <title>Zero's Boiler Plate</title>
+    <meta name="keywords" content="#"> <!--fill # with relavant content-->
+    <meta name="description" content="#"> <!--fill # with relavant content-->
+
+    <link rel="stylesheet" href="assets/styles/styles-2522b9a0ad.css"/>
+
+    <script src="assets/scripts/Vendor-a4f9bdc897.js"></script>
+
+
+    <title>zero's-boiler-plate</title>
+  </head>
+
+  <body>
+    <header>
+
+        <h1 class="logo"><a href="">Nav</a></h1>
+
+        <a class="to_nav" href="#primary_nav">Menu</a>
+
+    </header>
+
+
+    <!-- begin writing content here -->
+
+
+    <!-- FIGHT!  -->
+    <div class="fullscreen ">
+    <video id="bgvid">
+  </video>
+</div>
+
+
+
+<div class="weather-headline hidden">
+  <h1 class="location location--small location--medium"></h1>
+</div>
+
+<article class="info hidden">
+  <div class="temperature-bg">
+    <p class="temperature temperature--small temperature--medium"></p>
+  </div>
+  <p class="desc desc--small desc--medium"></p>
+  <!-- <h1>Animated Weather Icons</h1> -->
+  <div  tooltip='click here to refrsh weather data' tooltip-position='left' class="icon-bg">
+    <div class="icon sun-shower">
+      <div class="cloud"></div>
+      <div class="sun">
+        <div class="rays"></div>
+      </div>
+      <div class="rain"></div>
+    </div>
+
+    <div class="icon thunder-storm">
+      <div class="cloud"></div>
+      <div class="lightning">
+        <div class="bolt"></div>
+        <div class="bolt"></div>
+      </div>
+    </div>
+
+    <div class="icon cloudy scattered-clouds over-cast mist">
+      <div class="cloud"></div>
+      <div class="cloud"></div>
+    </div>
+
+    <div class="icon flurries snow">
+      <div class="cloud"></div>
+      <div class="snow">
+        <div class="flake"></div>
+        <div class="flake"></div>
+      </div>
+    </div>
+
+    <div class="icon sunny sunny-day">
+      <div class="sun">
+        <div class="rays"></div>
+      </div>
+    </div>
+
+    <div class="icon rainy light-rain heavy-rain">
+      <div class="cloud"></div>
+      <div class="rain"></div>
+    </div>
+
+  </div>
+
+</article>
+<div class="navigator">
+  <nav id="primary_nav">
+
+  <ul class='nav_list'>
+     <li class ="links">  <a  id="dev-location" href="">Device Location</a></li>
+     <li  class ="links"> <a id="text-ent"      href="#">Text Entry</a></li>
+     <li class ="links">  <a  id="voice-comm"   href="">Voice Command</a></li>
+     <li class ="links">  <a  id='contact'      href="">Contact</a></li>
+     <li class ="links">  <a  id='top'          href="">Top</a></li>
+  </ul>
+
+  </nav>
+  <!--end primary_nav-->
+</div>
+
+
+<div class="text-entry hidden">
+  <form>
+    City:<br>
+    <input class="search" type="text" name="cityname">
+    <input id='submit' type="button" value="Submit form">
+  </form>
+
+  <ul class="suggestions">
+  </ul>
+</div>
+
+
+
+<!-- end content here! -->
+
+
+
+<script src="assets/scripts/App-21c3c9cbb2.js"></script>
+  </body>
+</html>

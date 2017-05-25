@@ -1,70 +1,52 @@
+
+
+
 .icon-bg{
   position: relative;
-  bottom:12em;
-  border: 3px solid green;
+  bottom:4em;
+  background-color: #161616;
+  width: 100%;
+  opacity: 0.5;
   padding:6em ;
+  transition: all 2s;
+  z-index: -10;
+
 
 
   @mixin atSmall{
+    position: relative;
+    bottom:10em;
+    background-color: #161616;
+    width: 100%;
+    opacity: 0.5;
+    padding:6em ;
 
     }
   @mixin atMedium{
+    position: relative;
+    bottom:15em;
+    background-color: #161616;
+    width: 100%;
+    opacity: 0.5;
+    padding:6em ;
 
   }
 
 }
 
-[tooltip]{
-  margin:20px;
-  position:relative;
-}
-
-[tooltip]::before{
-  content: "";
-position: absolute;
-top:-6px;
-left:50%;
-transform: translateX(-50%);
-border-width: 4px 6px 0 6px;
-border-style: solid;
-border-color: rgba(0,0,0,0.7) transparent transparent     transparent;
-z-index: 100;
-}
-
-[tooltip]::after {
-    content: attr(tooltip);
-    position: absolute;
-    left:50%;
-    top:-6px;
-    transform: translateX(-50%)   translateY(-100%);
-    background: rgba(0,0,0,0.7);
-    text-align: center;
-    color: #fff;
-    padding:4px 2px;
-    font-size: 12px;
-    min-width: 80px;
-    border-radius: 5px;
-    pointer-events: none;
-}
-
-[tooltip-position='left']::before{
-  left:0%;
-  top:50%;
-  margin-left:-12px;
-  transform:translatey(-50%) rotate(-90deg)
-}
-[tooltip-position='left']::after{
-  left:0%;
-  top:50%;
-  margin-left:-8px;
-  transform: translateX(-100%)   translateY(-50%);
-}
-
-[tooltip]:hover::after,[tooltip]:hover::before {
-   opacity:1
-}
-
-.visible {
-  border: 1px solid red;
+/* also  effects navigation*/
+.visible{
   visibility: visible;
+  opacity: 1;
+  &-z-index-high{
+    z-index: 99 !important;
+  }
+}
+
+
+
+/*removes article/icons from page*/
+
+.none{
+  display: none;
 }
