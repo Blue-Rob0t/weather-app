@@ -1,7 +1,9 @@
 h1.location{
+  font-size:2em;
+  line-height:1em;
   color: rgba(255,255,255,0.9);
-  padding-top:2.5em;
-  padding-bottom:2em;
+  padding-top:1em;
+  padding-bottom:.5em;
 
   /*transition: all 2s;*/
 
